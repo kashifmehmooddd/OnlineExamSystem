@@ -1,0 +1,24 @@
+<h3>Finished Exams</h3>
+<%unless @exams.blank?%>
+  <table class="table">
+    <thead>
+      <tr class="nav-color">
+        <th>Subject Name</th>
+        <th>Exam Code</th>
+        <th>Start time</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@exams.each do |exam|%>
+        <%= render partial: 'shared/exams_show', locals: { exam: exam, path: "/exams/#{exam.id}" } %>
+      <%end%>
+    </tbody>
+  </table>
+<%else%>
+  <div class="outer-box">
+    <div class="inner-box">
+      <h2>There are no exams for approval</h2>
+    </div>
+  </div>
+<%end%>

@@ -1,0 +1,23 @@
+development:
+  cloud_name: "denl99qt2"
+  api_key: "133558693458756"
+  api_secret: "mKl99v5c94CYNNHsFxBIoFpODjU"
+  secure: true
+  enhance_image_tag: true
+  static_file_support: false
+
+production:
+  cloud_name: "denl99qt2"
+  api_key: "133558693458756"
+  api_secret: "mKl99v5c94CYNNHsFxBIoFpODjU"
+  secure: true
+  enhance_image_tag: true
+  static_file_support: true
+
+test:
+  cloud_name: "denl99qt2"
+  api_key: "133558693458756"
+  api_secret: "mKl99v5c94CYNNHsFxBIoFpODjU"
+  secure: true
+  enhance_image_tag: true
+  static_file_support: false

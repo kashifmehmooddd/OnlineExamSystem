@@ -1,0 +1,8 @@
+<h1 class="my-4">All Subjects <span><%= link_to "Add new", new_subject_path(),{:style=>"font-size:24px; float:right; padding-right:20px"}%></span></h1>
+<div class="exam-parent">
+  <%@subjects.each do |subject|%>
+    <div class="shadow p-3 mb-5 bg-white rounded">
+      <h2><%=subject.title%></h2>
+    </div>
+  <%end%>
+</div>

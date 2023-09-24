@@ -1,0 +1,38 @@
+<div class="outer-box">
+  <div class="inner-box">
+    <%if @student_score%>
+      <h3>  You have already submitted the exam </h3>
+    <%elsif current_user.exam_status == true%>
+      <h3> You are already in the exam </h3>
+      <%= link_to "Restart Exam", restart_exam_exam_path(@exam), method: "patch" %>
+    <%elsif (@exam.start_time < DateTime.now && @exam.end_time > DateTime.now && current_user.exam_status==false )%>
+      <%current_user.update(exam_status: true)%>
+      <%= form_with model: [@exam, @user_answer], method: :post, id: :user_answer_form do |form| %>
+        <%@questions.each do |question|%>
+          <%# working on this %>
+          <h2><%= form.label :question, "Q) #{question.description}",id:"question-#{question.id}",class: 'display-block form-control' %></h2>
+          <%if (question.base=="MCQ")%>
+            <select name="user_answer[answers][]" id=<%="answer-#{question.id}"%> class= 'display-block form-control'>
+              <%question.options.each.with_index do |o,index|%>
+                <option value=<%=index+1%> > <%=o.description%></option>
+              <%end%>
+            </select>
+          <%else%>
+            <%=form.text_area :answers, id:"answer-#{question.id}", multiple: true, required: true,class: 'display-block form-control'%>
+          <%end%>
+          <%# --------- %>
+          <%=form.hidden_field :question_id, value: question.id, multiple: true,class: 'form-control'%>
+        <%end%>
+        <div>
+          <%= form.submit 'submit exam',id: "submit-button",class: 'display-block btn btn-primary my-2 w-100 button-color' %>
+        </div>
+      <% end %>
+      <button id="start-button" class="btn btn-primary mb-2 w-100 button-color" onClick= "start(<%=@question_ids%>)">Start Exam</button>
+      <button id="next-button" class='display-block btn btn-primary mb-2 w-100 button-color' onClick= "disappear(<%=@question_ids%>)">next</button>
+    <%elsif @exam.end_time < DateTime.now%>
+      <h1>Exam has been finished</h1>
+    <%elsif @exam.start_time > DateTime.now%>
+      <h1>Exam has not started yet</h1>
+    <%end%>
+  </div>
+</div>

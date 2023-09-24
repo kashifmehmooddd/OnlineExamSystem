@@ -1,0 +1,9 @@
+<%@questions.each.with_index do |q,i|%>
+  <strong><%="Q#{i+1}) #{q.description}"%></strong>
+  <ol type="1">
+    <%q.options.each do |o|%>
+      <li><%=o.description%></li>
+    <%end%>
+  </ol>
+  <hr>
+<%end%>

@@ -1,0 +1,12 @@
+<div class="exam-parent">
+  <%exams.each do |exam|%>
+    <div class="shadow p-3 mb-5 bg-white rounded">
+      <%= link_to "/exams/#{exam.id}" do%>
+        <h2><%=exam.exam_code%></h2>
+        <h3><%=Subject.find(exam.subject_id).title%></h3>
+      <%end%>
+      <span><%= button_to "Edit", edit_exam_path(exam.id), method: :get %>
+        <%= button_to "delete", exam_path(exam.id), method: :delete ,class: 'delete'  %></span>
+    </div>
+  <%end%>
+</div>

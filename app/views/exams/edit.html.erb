@@ -1,0 +1,6 @@
+<div class="outer-box">
+  <div class="inner-box">
+    <h2>Edit <%=@exam.exam_code%></h2>
+    <%= render partial: 'shared/exams_form', locals: { exam: @exam, subjects: Subject.all} %>
+  </div>
+</div>

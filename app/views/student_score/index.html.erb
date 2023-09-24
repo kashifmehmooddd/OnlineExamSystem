@@ -1,0 +1,21 @@
+<h3>Attempted Exams</h3>
+<table class="table">
+  <thead>
+    <tr class="nav-color">
+      <th>Student Name</th>
+      <th>Exam Code</th>
+      <th>Score</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@student_scores.each do |s|%>
+      <tr>
+        <td><%= s.student.full_name%></td>
+        <td><%=s.exam.exam_code%></td>
+        <td><%=s.score%></td>
+        <td><%=link_to "view", student_score_path(s)%></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

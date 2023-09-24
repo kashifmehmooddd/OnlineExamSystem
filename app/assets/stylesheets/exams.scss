@@ -1,0 +1,21 @@
+// Place all the styles related to the Exam controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.exam-parent
+{
+  padding:20px ;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  column-gap: 20px;
+}
+
+.delete
+{
+  margin-top: 5px;
+}
+
+.fl-right
+{
+  float:right;
+  padding-right:20px;
+}

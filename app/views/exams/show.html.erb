@@ -1,0 +1,46 @@
+<div class="my-4 nav-color">
+  <h2> <%=@exam.subject.title%> <span class="right"><%=@exam.exam_code%></span>
+    <h2>
+      <h3>Teacher Name: <%=@exam.teacher.full_name%></h3>
+    </div>
+    <hr>
+    <h2>Questions
+      <%if policy(Exam).exam_edit?(@exam.start_time, @exam.status)%>
+        <span><%= link_to "Add new", new_exam_question_path(@exam.id),{:style=>"font-size:22px; float:right; padding-right:20px"}%></span>
+      <%end%>
+    </h2>
+    <hr>
+    <%@questions.each.with_index do |q,i|%>
+      <strong><%="Q#{i+1}) #{q.description}"%>
+        <%if policy(Exam).exam_edit?(@exam.start_time, @exam.status)%>
+
+          <span><%= link_to "Delete", exam_question_path(@exam,q), method: "delete" , style:"font-size:20px; float:right; padding-right:20px" %></span>
+      <%end%>
+      </strong>
+      <ol type="1">
+        <%q.options.each do |o|%>
+          <li><%=o.description%></li>
+        <%end%>
+      </ol>
+      <hr>
+      <p><%="Answer) #{q.answer}"%>
+        <p><br>
+        <%end%>
+        <p><strong>Exam Starts at:</strong> <%=@exam.start_time%></p>
+        <p><strong>Exam ends at:</strong> <%=@exam.end_time%></p>
+        <p><strong>Exam status:</strong> <%=@exam.status%></p>
+        <br>
+        <p><strong>NOTE:</strong> Once your exam is ready to send to admin for the approval, click the ready action! </p>
+
+        <%if DateTime.now < @exam.start_time%>
+          <strong>Action: </strong>
+          <% Exam.statuses.keys.each do |status|%>
+            <%if policy(Exam).teacher_action?(status) && @exam.status!="approved" %>
+              <%= link_to status, update_status_exam_path(@exam, status: status), method: "patch" %>
+            <% elsif  policy(Exam).admin_action?(status) %>
+              <%= link_to status, update_status_exam_path(@exam, status: status), method: "patch" %>
+            <%end%>
+          <%end%>
+        <%elsif DateTime.now > @exam.end_time && current_user.admin?%>
+          <%= link_to "finished", update_status_exam_path(@exam, status: :finished), method: "patch" %>
+        <% end %>

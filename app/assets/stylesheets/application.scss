@@ -1,0 +1,100 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+ .display-block
+{
+  display: none !important;
+}
+
+.question-block
+{
+
+  color:aqua
+
+}
+
+.rounded-circle
+{
+    width: 40px;
+    height: 40px;
+}
+.notice
+{
+    padding:20px;
+    background-color: rgb(30, 178, 30);
+    font-weight: 600;
+
+}
+
+.alert
+{
+   padding:20px;
+    background-color: #FF3333;
+    font-weight: 600;
+}
+
+
+.right
+{
+   float:right; padding-right:20px
+}
+.outer-box
+{
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
+  margin-bottom: 3%;
+
+}
+
+.inner-box
+{
+
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.gap
+{
+  margin: 5px;
+}
+
+.nav-color
+{
+   background-color: antiquewhite;
+   padding: 20px;
+}
+
+.button-color
+{
+  background-color: #7e5846 !important;
+  border: none !important;
+}
+.mr
+{
+  margin-right: 8.5%;
+}
+
+
+
+
+

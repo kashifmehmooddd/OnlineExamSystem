@@ -1,0 +1,43 @@
+<%= form_with model: exam, validate: true, local: true do |form| %>
+  <div>
+    <%= form.label :subject %><br>
+    <%= form.collection_select :subject_id, subjects, :id, :title, {include_blank: true},{class: "form-control"}%>
+    <% exam.errors.full_messages_for(:subject_id).each do |message| %>
+      <span class="validation-message"><%= message %> </span>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :exam_code %><br>
+    <%= form.text_field :exam_code,validate: true, class: "form-control",required: true %>
+    <% exam.errors.full_messages_for(:exam_code).each do |message| %>
+      <span class="validation-message"><%= message %> </span>
+    <% end %>
+  </div>
+  <div>
+    <%= form.hidden_field :score, value: 0, class: "form-control", required: true %>
+    <% exam.errors.full_messages_for(:score).each do |message| %>
+      <span class="validation-message"><%= message %> </span>
+    <% end %>
+  </div>
+  <div>
+
+    <%= form.hidden_field :teacher_id, value: current_user.id, class: "form-control", required: true %>
+  </div>
+  <div>
+    <%= form.label :start_time %><br>
+    <%= form.datetime_select :start_time,class: "form-control",type: "datetime-local"%>
+    <% exam.errors.full_messages_for(:start_time).each do |message| %>
+      <span class="validation-message"><%= message %> </span>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :end_time %><br>
+    <%= form.datetime_select :end_time,class: "form-control" %>
+    <% exam.errors.full_messages_for(:end_time).each do |message| %>
+      <span class="validation-message"><%= message %> </span>
+    <% end %>
+  </div>
+  <div class="my-3">
+    <input type="submit" name="commit" value="Create Exam" data-disable-with="Create Exam" class="btn btn-primary btn btn-primary my-2 w-100 button-color">
+  </div>
+<% end %>

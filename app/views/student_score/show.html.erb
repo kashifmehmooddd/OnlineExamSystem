@@ -1,0 +1,20 @@
+<div class="nav-color"><strong>Name:</strong> <%=@student_score.student.full_name%>
+  <span class="right"><strong>Subject:</strong> <%=@student_score.exam.subject.title%></span><br>
+  <strong>Exam Code:</strong> <%=@student_score.exam.exam_code%>
+  <span class="right"><strong>Score Achieved:</strong> <%=@student_score.score%></span>
+</div>
+<br>
+<h2>Questions</h2>
+<br>
+<%@questions.each.with_index do |q,i|%>
+  <strong><%="Q#{i+1}) #{q.description}"%></strong>
+  <span class="fl-right">marks: <%= q.score%></span>
+  <ol type="1">
+    <%q.options.each do |o|%>
+      <li><%=o.description%></li>
+    <%end%>
+  </ol>
+  <hr>
+  <p><%="Ans) #{q.user_answers.find_by(student_id: @student_score.student_id).answers} (#{q.user_answers.find_by(student_id: @student_score.student_id).status})" %>
+    <p><br>
+    <%end%>

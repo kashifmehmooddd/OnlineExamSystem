@@ -1,0 +1,10 @@
+<h1> Add new Subject </h1>
+<%= form_with model: @subject, validate: true, method: :post,local: true do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title, validate: {presence: true} %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

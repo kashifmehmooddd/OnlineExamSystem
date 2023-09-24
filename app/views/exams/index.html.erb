@@ -1,0 +1,24 @@
+<h2 class="my-4">Incoming Exams
+  <%if current_user.teacher?%>
+    <span><%= link_to "Add new", new_exam_path(),{:style=>"font-size:24px; float:right; padding-right:20px"}%></span>
+  <%end%>
+</h2>
+<table class="table">
+  <thead>
+    <tr class="nav-color">
+      <th>Subject Name</th>
+      <th>Exam Code</th>
+      <th>Start time</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@exams.each do |exam|%>
+      <%if current_user.student?%>
+        <%= render partial: 'shared/exams_show', locals: { exam: exam, path: "/exams/#{exam.id}/user_answers/new" } %>
+      <%else%>
+        <%= render partial: 'shared/exams_show', locals: { exam: exam, path: "/exams/#{exam.id}" } %>
+      <%end%>
+    <%end%>
+  </tbody>
+</table>

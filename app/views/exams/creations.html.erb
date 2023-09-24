@@ -1,0 +1,9 @@
+<%unless @exams.blank?%>
+  <%= render 'shared/pending_exams_show', exams: @exams  %>
+<%else%>
+  <div class="outer-box">
+    <div class="inner-box">
+      <h3>There are no exams in progress</h3>
+    </div>
+  </div>
+<%end%>
